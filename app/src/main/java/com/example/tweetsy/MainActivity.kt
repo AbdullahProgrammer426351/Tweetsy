@@ -22,8 +22,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var tweetsyAPI: TweetsyAPI
 
     companion object{
         const val TAG = "MY_MY_TAG"
@@ -31,10 +29,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        GlobalScope.launch {
-            var response = tweetsyAPI.getCategories()
-            Log.d(TAG, "response is -- ${response.body()!!.distinct().toString()}")
-        }
         setContent {
             TweetsyTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
